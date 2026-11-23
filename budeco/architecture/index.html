@@ -1,0 +1,27 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>budeco · architecture</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;background:#141417e6;backdrop-filter:blur(6px);padding:14px 20px;border-bottom:1px solid #2a2a30;z-index:5}
+h1{font-size:18px;margin:0;font-weight:600}
+.meta{color:#9a9aa4;font-size:13px;margin-top:2px}
+.list{max-width:900px;margin:24px auto;padding:0 20px}
+.list a.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #232329}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden;aspect-ratio:1}
+.tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#1c1c21}
+.tile .pl{position:absolute;right:6px;bottom:6px;background:#000a;border-radius:4px;padding:1px 6px;font-size:12px}
+.end{text-align:center;color:#666;padding:24px}
+</style><body><header><h1><a href='../index.html'>budeco</a> · architecture</h1><div class=meta>15</div></header><div class=grid id=g></div><div class=end id=end>·</div><script>const DATA=[{"p":"budeco/architecture/budeco_0255","v":0},{"p":"budeco/architecture/budeco_0264","v":0},{"p":"budeco/architecture/budeco_0543","v":0},{"p":"budeco/architecture/budeco_0609","v":0},{"p":"budeco/architecture/budeco_0650","v":0},{"p":"budeco/architecture/budeco_0867","v":0},{"p":"budeco/architecture/budeco_0868","v":0},{"p":"budeco/architecture/budeco_0871","v":0},{"p":"budeco/architecture/budeco_0872","v":0},{"p":"budeco/architecture/budeco_0873","v":0},{"p":"budeco/architecture/budeco_0874","v":0},{"p":"budeco/architecture/budeco_0875","v":0},{"p":"budeco/architecture/budeco_0876","v":0},{"p":"budeco/architecture/budeco_0877","v":0},{"p":"budeco/architecture/budeco_0879","v":0}],IMG="../../img",VID="../../vid";
+const items=DATA; let i=0; const grid=document.getElementById('g');
+function add(){const n=Math.min(180,items.length-i);const f=document.createDocumentFragment();
+for(let k=0;k<n;k++){const it=items[i++];const d=document.createElement('div');d.className='tile';
+const u=IMG+'/'+it.p+'.webp';
+if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;d.appendChild(v);}
+else{const im=document.createElement('img');im.loading='lazy';im.src=u;d.appendChild(im);}
+grid.appendChild(d);}
+if(i>=items.length){document.getElementById('end').style.display='block';observer.disconnect();}}
+const observer=new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'1200px'});
+new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'800px'}).observe(document.getElementById('end'));
+add();add();
+</script></body></html>

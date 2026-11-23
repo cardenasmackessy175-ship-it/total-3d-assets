@@ -1,0 +1,27 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>texverse · electronics-gadgets</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;background:#141417e6;backdrop-filter:blur(6px);padding:14px 20px;border-bottom:1px solid #2a2a30;z-index:5}
+h1{font-size:18px;margin:0;font-weight:600}
+.meta{color:#9a9aa4;font-size:13px;margin-top:2px}
+.list{max-width:900px;margin:24px auto;padding:0 20px}
+.list a.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #232329}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden;aspect-ratio:1}
+.tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#1c1c21}
+.tile .pl{position:absolute;right:6px;bottom:6px;background:#000a;border-radius:4px;padding:1px 6px;font-size:12px}
+.end{text-align:center;color:#666;padding:24px}
+</style><body><header><h1><a href='../index.html'>texverse</a> · electronics-gadgets</h1><div class=meta>52</div></header><div class=grid id=g></div><div class=end id=end>·</div><script>const DATA=[{"p":"texverse/electronics-gadgets/texverse_0074","v":0},{"p":"texverse/electronics-gadgets/texverse_0101","v":1},{"p":"texverse/electronics-gadgets/texverse_0106","v":0},{"p":"texverse/electronics-gadgets/texverse_0117","v":1},{"p":"texverse/electronics-gadgets/texverse_0141","v":0},{"p":"texverse/electronics-gadgets/texverse_0171","v":0},{"p":"texverse/electronics-gadgets/texverse_0175","v":0},{"p":"texverse/electronics-gadgets/texverse_0209","v":0},{"p":"texverse/electronics-gadgets/texverse_0265","v":1},{"p":"texverse/electronics-gadgets/texverse_1403","v":0},{"p":"texverse/electronics-gadgets/texverse_1408","v":0},{"p":"texverse/electronics-gadgets/texverse_1414","v":0},{"p":"texverse/electronics-gadgets/texverse_1418","v":0},{"p":"texverse/electronics-gadgets/texverse_1429","v":0},{"p":"texverse/electronics-gadgets/texverse_1441","v":0},{"p":"texverse/electronics-gadgets/texverse_1445","v":0},{"p":"texverse/electronics-gadgets/texverse_1473","v":0},{"p":"texverse/electronics-gadgets/texverse_1537","v":0},{"p":"texverse/electronics-gadgets/texverse_1583","v":0},{"p":"texverse/electronics-gadgets/texverse_1700","v":0},{"p":"texverse/electronics-gadgets/texverse_1705","v":1},{"p":"texverse/electronics-gadgets/texverse_1777","v":0},{"p":"texverse/electronics-gadgets/texverse_1798","v":0},{"p":"texverse/electronics-gadgets/texverse_1852","v":0},{"p":"texverse/electronics-gadgets/texverse_1930","v":0},{"p":"texverse/electronics-gadgets/texverse_1984","v":0},{"p":"texverse/electronics-gadgets/texverse_2026","v":0},{"p":"texverse/electronics-gadgets/texverse_2061","v":0},{"p":"texverse/electronics-gadgets/texverse_2133","v":1},{"p":"texverse/electronics-gadgets/texverse_2203","v":0},{"p":"texverse/electronics-gadgets/texverse_2235","v":0},{"p":"texverse/electronics-gadgets/texverse_2243","v":0},{"p":"texverse/electronics-gadgets/texverse_2285","v":0},{"p":"texverse/electronics-gadgets/texverse_2290","v":0},{"p":"texverse/electronics-gadgets/texverse_2336","v":0},{"p":"texverse/electronics-gadgets/texverse_2407","v":0},{"p":"texverse/electronics-gadgets/texverse_2818","v":0},{"p":"texverse/electronics-gadgets/texverse_2939","v":0},{"p":"texverse/electronics-gadgets/texverse_2982","v":0},{"p":"texverse/electronics-gadgets/texverse_3069","v":1},{"p":"texverse/electronics-gadgets/texverse_3163","v":0},{"p":"texverse/electronics-gadgets/texverse_3247","v":1},{"p":"texverse/electronics-gadgets/texverse_3313","v":0},{"p":"texverse/electronics-gadgets/texverse_3316","v":0},{"p":"texverse/electronics-gadgets/texverse_3317","v":0},{"p":"texverse/electronics-gadgets/texverse_3326","v":0},{"p":"texverse/electronics-gadgets/texverse_3331","v":0},{"p":"texverse/electronics-gadgets/texverse_3349","v":0},{"p":"texverse/electronics-gadgets/texverse_3382","v":1},{"p":"texverse/electronics-gadgets/texverse_3454","v":0},{"p":"texverse/electronics-gadgets/texverse_3504","v":0},{"p":"texverse/electronics-gadgets/texverse_3660","v":0}],IMG="../../img",VID="../../vid";
+const items=DATA; let i=0; const grid=document.getElementById('g');
+function add(){const n=Math.min(180,items.length-i);const f=document.createDocumentFragment();
+for(let k=0;k<n;k++){const it=items[i++];const d=document.createElement('div');d.className='tile';
+const u=IMG+'/'+it.p+'.webp';
+if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;d.appendChild(v);}
+else{const im=document.createElement('img');im.loading='lazy';im.src=u;d.appendChild(im);}
+grid.appendChild(d);}
+if(i>=items.length){document.getElementById('end').style.display='block';observer.disconnect();}}
+const observer=new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'1200px'});
+new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'800px'}).observe(document.getElementById('end'));
+add();add();
+</script></body></html>
