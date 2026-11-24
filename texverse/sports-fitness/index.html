@@ -1,0 +1,27 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>texverse · sports-fitness</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;background:#141417e6;backdrop-filter:blur(6px);padding:14px 20px;border-bottom:1px solid #2a2a30;z-index:5}
+h1{font-size:18px;margin:0;font-weight:600}
+.meta{color:#9a9aa4;font-size:13px;margin-top:2px}
+.list{max-width:900px;margin:24px auto;padding:0 20px}
+.list a.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #232329}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden;aspect-ratio:1}
+.tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#1c1c21}
+.tile .pl{position:absolute;right:6px;bottom:6px;background:#000a;border-radius:4px;padding:1px 6px;font-size:12px}
+.end{text-align:center;color:#666;padding:24px}
+</style><body><header><h1><a href='../index.html'>texverse</a> · sports-fitness</h1><div class=meta>24</div></header><div class=grid id=g></div><div class=end id=end>·</div><script>const DATA=[{"p":"texverse/sports-fitness/00c2112c133a4b548a3ef3b01b009286","v":0},{"p":"texverse/sports-fitness/0134ac04152f443c9597db37792bedfe","v":0},{"p":"texverse/sports-fitness/0190743b921a40f3aa171591fb42e5f2","v":0},{"p":"texverse/sports-fitness/0191816ab57b4286bc13020216fb9c3e","v":0},{"p":"texverse/sports-fitness/0262f47e736e430f94c3588599a15a31","v":0},{"p":"texverse/sports-fitness/03118ba7a8204a19b8f0cc27054a3ee4","v":0},{"p":"texverse/sports-fitness/038c792390b544098c0d0fb606a4bd7f","v":0},{"p":"texverse/sports-fitness/04c67ec2ec37488f943cad88e822b079","v":0},{"p":"texverse/sports-fitness/04d704176c0b4ee08fb03cf2c268c710","v":0},{"p":"texverse/sports-fitness/072a7e8d610f4143aa510256112d97cf","v":0},{"p":"texverse/sports-fitness/07435e166c9b413a9749d9f5b715db74","v":0},{"p":"texverse/sports-fitness/07e5a1bc68f2433eb8fb3db3582ec3d9","v":0},{"p":"texverse/sports-fitness/0839f994d27f43d0807ef8425016485d","v":0},{"p":"texverse/sports-fitness/08771d910f5d4f169f41fcc1dad6671d","v":0},{"p":"texverse/sports-fitness/0935bee863ed4e8ca1ada56355709162","v":0},{"p":"texverse/sports-fitness/098bceb56e0b46b6af797dc4ab9f4825","v":0},{"p":"texverse/sports-fitness/09b8055a63cf45b794cbf53c1b35c2fe","v":0},{"p":"texverse/sports-fitness/09f94c43f15e4f1fa089fbd1420d5406","v":0},{"p":"texverse/sports-fitness/0a05a524a45d4e9a90d0f8f807c1eba5","v":0},{"p":"texverse/sports-fitness/0a96f1f19afc432bb22c3d74da546338","v":0},{"p":"texverse/sports-fitness/0aedd728615e4ced96b38e41228a1b1f","v":0},{"p":"texverse/sports-fitness/0afb9e78f2164d678fcaf89cd331b4e3","v":0},{"p":"texverse/sports-fitness/0b29076aa16e4a4388d48d43051c205b","v":0},{"p":"texverse/sports-fitness/e10ac3f9959146d8b0094aff82ce5f65","v":0}],IMG="../../img",VID="../../vid";
+const items=DATA; let i=0; const grid=document.getElementById('g');
+function add(){const n=Math.min(180,items.length-i);const f=document.createDocumentFragment();
+for(let k=0;k<n;k++){const it=items[i++];const d=document.createElement('div');d.className='tile';
+const u=IMG+'/'+it.p+'.webp';
+if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;d.appendChild(v);}
+else{const im=document.createElement('img');im.loading='lazy';im.src=u;d.appendChild(im);}
+grid.appendChild(d);}
+if(i>=items.length){document.getElementById('end').style.display='block';observer.disconnect();}}
+const observer=new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'1200px'});
+new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'800px'}).observe(document.getElementById('end'));
+add();add();
+</script></body></html>
