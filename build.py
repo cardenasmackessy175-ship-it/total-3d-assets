@@ -33,8 +33,12 @@ header{position:sticky;top:0;z-index:5;background:#141417e6;backdrop-filter:blur
 h1{font-size:18px;margin:0;font-weight:600}
 .meta{color:var(--dim);font-size:13px;margin-top:2px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;padding:12px}
-.tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden;aspect-ratio:1}
+.tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden}
+.tile .ph{position:relative;aspect-ratio:1;overflow:hidden}
 .tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#1c1c21}
+.tile .id{font:12px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim);padding:4px 6px 5px;text-align:center;word-break:break-all;background:#19191e}
+.tile .id b{color:var(--acc);font-weight:600}
+.tile.hit{outline:2px solid var(--acc);outline-offset:-2px}
 .end{text-align:center;color:#666;padding:24px}
 @media(max-width:760px){.wrap{display:block}nav{position:static;width:auto;height:auto;border-right:0;border-bottom:1px solid var(--line)}}
 """
@@ -57,8 +61,11 @@ GRID_JS = """
 const grid=document.getElementById('g');let i=0;
 function add(){const n=Math.min(180,ITEMS.length-i);const f=document.createDocumentFragment();
 for(let k=0;k<n;k++){const it=ITEMS[i++];const d=document.createElement('div');d.className='tile';const u=IMG+'/'+it.p+'.webp';
-if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;d.appendChild(v);}
-else{const im=document.createElement('img');im.loading='lazy';im.src=u;d.appendChild(im);}
+const ph=document.createElement('div');ph.className='ph';
+if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;ph.appendChild(v);}
+else{const im=document.createElement('img');im.loading='lazy';im.src=u;ph.appendChild(im);}
+d.appendChild(ph);
+if(it.n){const cap=document.createElement('div');cap.className='id';cap.textContent=it.n;d.appendChild(cap);}
 grid.appendChild(d);}
 if(i>=ITEMS.length){document.getElementById('end').style.display='block';if(window.ob)window.ob.disconnect();}}
 window.ob=new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'1200px'});
@@ -66,9 +73,18 @@ window.ob.observe(document.getElementById('end'));
 add();add();
 const q=document.getElementById('q');
 if(q)q.addEventListener('input',()=>{const t=q.value.toLowerCase();document.querySelectorAll('nav a.cat').forEach(a=>{a.style.display=(a.dataset.name||'').includes(t)||a.classList.contains('on')?'':'none';});});
+const j=document.getElementById('jump');
+if(j)j.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const t=j.value.trim().toLowerCase();if(!t)return;
+const idx=ITEMS.findIndex(it=>(it.n||'').toLowerCase().includes(t));
+if(idx<0){j.style.borderColor='#b4483c';return;}j.style.borderColor='';
+window.ob.disconnect();
+while(i<=idx)add();
+const el=grid.children[idx];
+if(el){el.scrollIntoView({block:'center'});el.classList.add('hit');setTimeout(()=>el.classList.remove('hit'),1800);}});
 """
 
 CIRCLED = "·"
+ID_SOURCES = {"texverse"}   # sources whose tiles show the asset id under the picture (owner, 2026-11-25)
 
 
 def esc(text):
@@ -105,7 +121,7 @@ def scan_images(repo):
     return by_source
 
 
-def page(depth, title, heading, meta, categories, active, items, back_href, back_text):
+def page(depth, title, heading, meta, categories, active, items, back_href, back_text, show_ids=False):
     prefix = "../" * depth
     links = []
     for cat, count in categories:
@@ -114,16 +130,23 @@ def page(depth, title, heading, meta, categories, active, items, back_href, back
         label = "untagged" if cat == "_" else (cat if cat is not None else "全部")
         links.append('<a class="%s" data-name="%s" href="%s"><span>%s</span><span class="n">%d</span></a>' % (
             cls, esc(label.lower()), esc(href), esc(label), count))
-    data = json.dumps([{"p": it["p"], "v": 1 if it["v"] else 0} for it in items], ensure_ascii=False, separators=(",", ":"))
+    if show_ids:
+        data = json.dumps([{"p": it["p"], "v": 1 if it["v"] else 0, "n": it["n"]} for it in items],
+                          ensure_ascii=False, separators=(",", ":"))
+        jump = '<input id=jump placeholder="输入 id 定位，如 texverse_0282">'
+    else:
+        data = json.dumps([{"p": it["p"], "v": 1 if it["v"] else 0} for it in items], ensure_ascii=False, separators=(",", ":"))
+        jump = ""
     return """<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
 <title>%(title)s</title><style>%(style)s</style><body>
 <div class=wrap><nav><a class=back href="%(back_href)s">%(back_text)s</a><h2>%(heading)s</h2>
 <input id=q placeholder="筛选分类">%(links)s</nav>
-<main><header><h1>%(heading)s</h1><div class=meta>%(meta)s</div></header>
+<main><header><h1>%(heading)s</h1><div class=meta>%(meta)s</div>%(jump_box)s</header>
 <div class=grid id=g></div><div class=end id=end style=display:none>·</div></main></div>
 <script>const ITEMS=%(data)s;const IMG="%(prefix)simg",VID="%(prefix)svid";%(js)s</script></body></html>
 """ % dict(title=esc(title), style=STYLE, back_href=esc(back_href), back_text=esc(back_text), heading=esc(heading),
-           meta=esc(meta), links="".join(links), data=data, prefix=prefix, js=GRID_JS)
+           meta=esc(meta), links="".join(links), data=data, prefix=prefix, js=GRID_JS,
+           jump_box=('<div style="margin-top:10px">%s</div>' % jump) if jump else "")
 
 
 def build(repo, categories_file):
@@ -140,17 +163,18 @@ def build(repo, categories_file):
         total = len(items)
         sidebar = [(None, total)] + per_name
         out = repo / source
+        show_ids = source in ID_SOURCES
         # the site's own pages under <source>/index.html
         (out / "index.html").write_text(page(1, source, source, "%d 个资产" % total, sidebar, None, items,
-                                             "../index.html", "total 3d assets"), encoding="utf-8")
+                                             "../index.html", "total 3d assets", show_ids), encoding="utf-8")
         shutil.rmtree(out / "cat", ignore_errors=True)
         for cat, count in per_name:
-            sub = items if False else [it for it in items if it["c"] == cat]
+            sub = [it for it in items if it["c"] == cat]
             target = out / "cat" / cat if cat != "_" else out / "cat" / "_"
             target.mkdir(parents=True, exist_ok=True)
             (target / "index.html").write_text(
                 page(3, "%s · %s" % (source, cat), "%s · %s" % (source, "untagged" if cat == "_" else cat),
-                     "%d 个资产" % count, sidebar, cat, sub, "../../../index.html", "total 3d assets"),
+                     "%d 个资产" % count, sidebar, cat, sub, "../../../index.html", "total 3d assets", show_ids),
                 encoding="utf-8")
     # the front page: sources, biggest first
     rows = "".join('<a class=row href="%s/index.html"><span>%s</span><span class=n>%d</span></a>' % (
