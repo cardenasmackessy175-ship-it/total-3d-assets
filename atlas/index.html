@@ -1,15 +1,43 @@
-<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>atlas</title><style>
-:root{color-scheme:dark}*{box-sizing:border-box}
-body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
-a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
-header{position:sticky;top:0;background:#141417e6;backdrop-filter:blur(6px);padding:14px 20px;border-bottom:1px solid #2a2a30;z-index:5}
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
+<title>atlas</title><style>
+:root{color-scheme:dark;--bg:#141417;--panel:#17171b;--line:#26262d;--ink:#e8e8ea;--dim:#9a9aa4;--acc:#8ab4ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{display:flex;min-height:100vh}
+nav{width:250px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--panel);border-right:1px solid var(--line);padding:14px 12px 40px}
+nav .back{display:block;color:var(--dim);font-size:13px;margin-bottom:10px}
+nav h2{font-size:15px;margin:0 0 8px;font-weight:600}
+nav input{width:100%;background:#101013;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 8px;font:13px inherit;margin-bottom:10px}
+nav a.cat{display:flex;justify-content:space-between;gap:8px;padding:5px 8px;border-radius:5px;color:var(--ink);font-size:13.5px}
+nav a.cat span.n{color:var(--dim);font-variant-numeric:tabular-nums;flex:none}
+nav a.cat:hover{background:#202027;text-decoration:none}
+nav a.cat.on{background:#233149;color:#cfe0ff}
+main{flex:1;min-width:0}
+header{position:sticky;top:0;z-index:5;background:#141417e6;backdrop-filter:blur(6px);padding:14px 20px;border-bottom:1px solid var(--line)}
 h1{font-size:18px;margin:0;font-weight:600}
-.meta{color:#9a9aa4;font-size:13px;margin-top:2px}
-.list{max-width:900px;margin:24px auto;padding:0 20px}
-.list a.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #232329}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.meta{color:var(--dim);font-size:13px;margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;padding:12px}
 .tile{position:relative;background:#1c1c21;border-radius:6px;overflow:hidden;aspect-ratio:1}
 .tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block;background:#1c1c21}
-.tile .pl{position:absolute;right:6px;bottom:6px;background:#000a;border-radius:4px;padding:1px 6px;font-size:12px}
 .end{text-align:center;color:#666;padding:24px}
-</style><body><header><h1><a href='../index.html'>total 3d assets</a> · atlas</h1><div class=meta>135</div></header><div class=list><a class=row href='animals/index.html'><span>animals</span><span>80</span></a><a class=row href='people/index.html'><span>people</span><span>55</span></a></div></body></html>
+@media(max-width:760px){.wrap{display:block}nav{position:static;width:auto;height:auto;border-right:0;border-bottom:1px solid var(--line)}}
+</style><body>
+<div class=wrap><nav><a class=back href="../index.html">total 3d assets</a><h2>atlas</h2>
+<input id=q placeholder="筛选分类"><a class="cat on" data-name="全部" href="../"><span>全部</span><span class="n">135</span></a><a class="cat" data-name="animals" href="../cat/animals/"><span>animals</span><span class="n">80</span></a><a class="cat" data-name="people" href="../cat/people/"><span>people</span><span class="n">55</span></a></nav>
+<main><header><h1>atlas</h1><div class=meta>135 个资产</div></header>
+<div class=grid id=g></div><div class=end id=end style=display:none>·</div></main></div>
+<script>const ITEMS=[{"p":"atlas/animals/atlas_0001","v":0},{"p":"atlas/animals/atlas_0002","v":0},{"p":"atlas/animals/atlas_0003","v":0},{"p":"atlas/animals/atlas_0004","v":0},{"p":"atlas/animals/atlas_0005","v":0},{"p":"atlas/animals/atlas_0006","v":0},{"p":"atlas/animals/atlas_0007","v":0},{"p":"atlas/animals/atlas_0008","v":1},{"p":"atlas/animals/atlas_0009","v":0},{"p":"atlas/animals/atlas_0010","v":0},{"p":"atlas/animals/atlas_0011","v":0},{"p":"atlas/animals/atlas_0012","v":1},{"p":"atlas/animals/atlas_0013","v":0},{"p":"atlas/animals/atlas_0015","v":0},{"p":"atlas/animals/atlas_0016","v":0},{"p":"atlas/animals/atlas_0017","v":0},{"p":"atlas/animals/atlas_0018","v":1},{"p":"atlas/animals/atlas_0019","v":0},{"p":"atlas/animals/atlas_0020","v":0},{"p":"atlas/animals/atlas_0021","v":0},{"p":"atlas/animals/atlas_0022","v":1},{"p":"atlas/animals/atlas_0023","v":0},{"p":"atlas/animals/atlas_0024","v":0},{"p":"atlas/animals/atlas_0025","v":0},{"p":"atlas/animals/atlas_0026","v":0},{"p":"atlas/animals/atlas_0027","v":1},{"p":"atlas/animals/atlas_0030","v":1},{"p":"atlas/animals/atlas_0033","v":1},{"p":"atlas/animals/atlas_0034","v":1},{"p":"atlas/animals/atlas_0036","v":1},{"p":"atlas/animals/atlas_0037","v":0},{"p":"atlas/animals/atlas_0038","v":1},{"p":"atlas/animals/atlas_0039","v":1},{"p":"atlas/animals/atlas_0040","v":1},{"p":"atlas/animals/atlas_0042","v":0},{"p":"atlas/animals/atlas_0043","v":0},{"p":"atlas/animals/atlas_0044","v":0},{"p":"atlas/animals/atlas_0045","v":1},{"p":"atlas/animals/atlas_0048","v":1},{"p":"atlas/animals/atlas_0052","v":1},{"p":"atlas/animals/atlas_0054","v":0},{"p":"atlas/animals/atlas_0063","v":1},{"p":"atlas/animals/atlas_0064","v":1},{"p":"atlas/animals/atlas_0067","v":0},{"p":"atlas/animals/atlas_0068","v":1},{"p":"atlas/animals/atlas_0069","v":1},{"p":"atlas/animals/atlas_0070","v":1},{"p":"atlas/animals/atlas_0071","v":1},{"p":"atlas/animals/atlas_0072","v":1},{"p":"atlas/animals/atlas_0073","v":1},{"p":"atlas/animals/atlas_0074","v":1},{"p":"atlas/animals/atlas_0075","v":0},{"p":"atlas/animals/atlas_0076","v":1},{"p":"atlas/animals/atlas_0077","v":0},{"p":"atlas/animals/atlas_0078","v":0},{"p":"atlas/animals/atlas_0079","v":0},{"p":"atlas/animals/atlas_0080","v":0},{"p":"atlas/animals/atlas_0081","v":0},{"p":"atlas/animals/atlas_0082","v":0},{"p":"atlas/animals/atlas_0083","v":0},{"p":"atlas/animals/atlas_0084","v":0},{"p":"atlas/animals/atlas_0085","v":0},{"p":"atlas/animals/atlas_0086","v":0},{"p":"atlas/animals/atlas_0087","v":0},{"p":"atlas/animals/atlas_0088","v":0},{"p":"atlas/animals/atlas_0089","v":0},{"p":"atlas/animals/atlas_0090","v":0},{"p":"atlas/animals/atlas_0091","v":0},{"p":"atlas/animals/atlas_0092","v":0},{"p":"atlas/animals/atlas_0093","v":0},{"p":"atlas/animals/atlas_0094","v":0},{"p":"atlas/animals/atlas_0095","v":0},{"p":"atlas/animals/atlas_0096","v":0},{"p":"atlas/animals/atlas_0097","v":0},{"p":"atlas/animals/atlas_0098","v":0},{"p":"atlas/animals/atlas_0099","v":0},{"p":"atlas/animals/atlas_0100","v":0},{"p":"atlas/animals/atlas_0101","v":0},{"p":"atlas/animals/atlas_0102","v":0},{"p":"atlas/animals/atlas_0103","v":0},{"p":"atlas/people/atlas_0105","v":0},{"p":"atlas/people/atlas_0106","v":0},{"p":"atlas/people/atlas_0108","v":1},{"p":"atlas/people/atlas_0109","v":0},{"p":"atlas/people/atlas_0110","v":0},{"p":"atlas/people/atlas_0117","v":0},{"p":"atlas/people/atlas_0118","v":0},{"p":"atlas/people/atlas_0121","v":0},{"p":"atlas/people/atlas_0123","v":0},{"p":"atlas/people/atlas_0124","v":0},{"p":"atlas/people/atlas_0125","v":0},{"p":"atlas/people/atlas_0127","v":1},{"p":"atlas/people/atlas_0128","v":0},{"p":"atlas/people/atlas_0129","v":0},{"p":"atlas/people/atlas_0130","v":0},{"p":"atlas/people/atlas_0132","v":0},{"p":"atlas/people/atlas_0133","v":0},{"p":"atlas/people/atlas_0134","v":1},{"p":"atlas/people/atlas_0135","v":1},{"p":"atlas/people/atlas_0136","v":0},{"p":"atlas/people/atlas_0138","v":1},{"p":"atlas/people/atlas_0139","v":1},{"p":"atlas/people/atlas_0143","v":0},{"p":"atlas/people/atlas_0144","v":0},{"p":"atlas/people/atlas_0145","v":0},{"p":"atlas/people/atlas_0146","v":0},{"p":"atlas/people/atlas_0147","v":0},{"p":"atlas/people/atlas_0149","v":1},{"p":"atlas/people/atlas_0155","v":0},{"p":"atlas/people/atlas_0156","v":0},{"p":"atlas/people/atlas_0157","v":0},{"p":"atlas/people/atlas_0158","v":0},{"p":"atlas/people/atlas_0159","v":0},{"p":"atlas/people/atlas_0160","v":0},{"p":"atlas/people/atlas_0161","v":0},{"p":"atlas/people/atlas_0162","v":0},{"p":"atlas/people/atlas_0163","v":0},{"p":"atlas/people/atlas_0164","v":0},{"p":"atlas/people/atlas_0167","v":0},{"p":"atlas/people/atlas_0169","v":0},{"p":"atlas/people/atlas_0170","v":1},{"p":"atlas/people/atlas_0171","v":1},{"p":"atlas/people/atlas_0173","v":0},{"p":"atlas/people/atlas_0174","v":0},{"p":"atlas/people/atlas_0176","v":0},{"p":"atlas/people/atlas_0177","v":0},{"p":"atlas/people/atlas_0178","v":0},{"p":"atlas/people/atlas_0179","v":0},{"p":"atlas/people/atlas_0180","v":0},{"p":"atlas/people/atlas_0183","v":0},{"p":"atlas/people/atlas_0186","v":0},{"p":"atlas/people/atlas_0191","v":1},{"p":"atlas/people/atlas_0193","v":0},{"p":"atlas/people/atlas_0197","v":0},{"p":"atlas/people/atlas_0203","v":0}];const IMG="../img",VID="../vid";
+const grid=document.getElementById('g');let i=0;
+function add(){const n=Math.min(180,ITEMS.length-i);const f=document.createDocumentFragment();
+for(let k=0;k<n;k++){const it=ITEMS[i++];const d=document.createElement('div');d.className='tile';const u=IMG+'/'+it.p+'.webp';
+if(it.v){const v=document.createElement('video');v.src=VID+'/'+it.p+'.mp4';v.poster=u;v.muted=true;v.loop=true;v.playsInline=true;v.preload='none';v.controls=true;d.appendChild(v);}
+else{const im=document.createElement('img');im.loading='lazy';im.src=u;d.appendChild(im);}
+grid.appendChild(d);}
+if(i>=ITEMS.length){document.getElementById('end').style.display='block';if(window.ob)window.ob.disconnect();}}
+window.ob=new IntersectionObserver(es=>{if(es[0].isIntersecting)add()},{rootMargin:'1200px'});
+window.ob.observe(document.getElementById('end'));
+add();add();
+const q=document.getElementById('q');
+if(q)q.addEventListener('input',()=>{const t=q.value.toLowerCase();document.querySelectorAll('nav a.cat').forEach(a=>{a.style.display=(a.dataset.name||'').includes(t)||a.classList.contains('on')?'':'none';});});
+</script></body></html>
