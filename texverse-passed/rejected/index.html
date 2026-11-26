@@ -1,0 +1,20 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
+<title>texverse 未分类 · 未通过</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;background:#141417ee;padding:12px 16px;border-bottom:1px solid #2a2a30;z-index:5}h1{font-size:18px;margin:0 0 6px;font-weight:600}
+.meta{color:#9a9aa4;font-size:13px}a{color:#8ab4ff}button{background:#22222a;color:#ddd;border:1px solid #33333b;border-radius:6px;padding:4px 10px;margin:6px 6px 0 0;cursor:pointer}
+button.on{background:#3a5bd9;border-color:#3a5bd9;color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.tile{background:#1c1c21;border-radius:6px;overflow:hidden}.tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#1c1c21}
+.tile a{display:block;font:11px/1.5 ui-monospace,monospace;color:#8a8a94;padding:2px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile div{font-size:12px;color:#b8b8c0;padding:0 6px 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#end{height:40px}
+</style><body><header><h1><a href='../'>texverse 未分类</a> · 未通过</h1><div class=meta>220,208 个 · 图为 Sketchfab 源站缩略图</div><button data-r='cx2'>一般 87,185</button><button data-r='cx1'>简单 53,788</button><button data-r='picture'>画面不可用 41,534</button><button data-r='scene'>场景 / 建筑群 27,957</button><button data-r='multiple'>多个资产 4,641</button><button data-r='detail_cx2'>复看：一般 3,703</button><button data-r='detail_part'>复看：不完整 911</button><button data-r='duplicate'>重复 184</button><button data-r='detail_ip'>复看：迪士尼 / 漫威 / DC 97</button><button data-r='detail_picture'>复看：画面不可用 91</button><button data-r='detail_scene'>复看：场景 55</button><button data-r='detail_cx1'>复看：简单 52</button><button data-r='detail_multiple'>复看：多个资产 10</button></header>
+<div class=grid id=g></div><div id=end></div>
+<script>const IDX={"cx2": {"label": "一般", "n": 87185, "pages": 88}, "cx1": {"label": "简单", "n": 53788, "pages": 54}, "picture": {"label": "画面不可用", "n": 41534, "pages": 42}, "scene": {"label": "场景 / 建筑群", "n": 27957, "pages": 28}, "multiple": {"label": "多个资产", "n": 4641, "pages": 5}, "detail_cx2": {"label": "复看：一般", "n": 3703, "pages": 4}, "detail_part": {"label": "复看：不完整", "n": 911, "pages": 1}, "duplicate": {"label": "重复", "n": 184, "pages": 1}, "detail_ip": {"label": "复看：迪士尼 / 漫威 / DC", "n": 97, "pages": 1}, "detail_picture": {"label": "复看：画面不可用", "n": 91, "pages": 1}, "detail_scene": {"label": "复看：场景", "n": 55, "pages": 1}, "detail_cx1": {"label": "复看：简单", "n": 52, "pages": 1}, "detail_multiple": {"label": "复看：多个资产", "n": 10, "pages": 1}};let R=null,P=0,busy=false;const g=document.getElementById('g');
+async function more(){if(busy||!R||P>=IDX[R].pages)return;busy=true;const rows=await (await fetch('data/'+R+'/'+String(P).padStart(3,'0')+'.json')).json();P++;
+const f=document.createDocumentFragment();for(const [u,t,w] of rows){const d=document.createElement('div');d.className='tile';
+d.innerHTML=(t?"<img loading=lazy src='https://media.sketchfab.com/models/"+u+"/thumbnails/"+t+"'>":"<img>")+"<div></div><a target=_blank href='https://sketchfab.com/3d-models/"+u+"'>"+u+"</a>";
+d.querySelector('div').textContent=w;f.appendChild(d);}g.appendChild(f);busy=false;}
+function pick(r){R=r;P=0;g.innerHTML='';document.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.r===r));more();}
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>pick(b.dataset.r));
+new IntersectionObserver(e=>{if(e[0].isIntersecting)more()},{rootMargin:'1500px'}).observe(document.getElementById('end'));
+const first=Object.keys(IDX)[0];if(first)pick(first);</script></body></html>
