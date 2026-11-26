@@ -1,0 +1,17 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
+<title>texverse 未分类 · 通过</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#141417;color:#e8e8ea;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;background:#141417ee;padding:12px 16px;border-bottom:1px solid #2a2a30;z-index:5}
+h1{font-size:18px;margin:0 0 6px;font-weight:600}.meta{color:#9a9aa4;font-size:13px}
+button{background:#22222a;color:#ddd;border:1px solid #33333b;border-radius:6px;padding:4px 10px;margin:6px 6px 0 0;cursor:pointer}
+button.on{background:#3a5bd9;border-color:#3a5bd9;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;padding:12px}
+.tile{background:#1c1c21;border-radius:6px;overflow:hidden}.tile img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#1c1c21}
+.tile a{display:block;font:11px/1.6 ui-monospace,monospace;color:#8a8a94;padding:2px 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+</style><body><header><h1>texverse 未分类 · 通过</h1><div class=meta>已筛 0 / 444,619 · 通过 0 · 更新 2026-11-26 17:58</div>
+<button data-c='' class=on>全部 0</button><button data-c='cx4'>非常复杂 0</button><button data-c='cx3'>复杂 0</button></header><div class=grid id=g></div>
+<script>const D=[];const g=document.getElementById('g');
+function show(c){g.innerHTML='';const f=document.createDocumentFragment();for(const x of D){if(c&&x.c!==c)continue;
+const d=document.createElement('div');d.className='tile';d.innerHTML="<img loading=lazy src='img/"+x.u+".webp'><a target=_blank href='https://sketchfab.com/3d-models/"+x.u+"'>"+x.u+"</a>";f.appendChild(d);}g.appendChild(f);}
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>{document.querySelectorAll('button').forEach(o=>o.classList.remove('on'));b.classList.add('on');show(b.dataset.c);});
+show('');</script></body></html>
